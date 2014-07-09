@@ -10,7 +10,8 @@
 var fs = require("fs"),
 		util = require('util'),
 		express = require('express'),
-        bodyParser = require('body-parser');
+        bodyParser = require('body-parser'),
+        path = require('path');
 		
 var config = { "db": {
   'port': 27017,
@@ -27,10 +28,12 @@ var config = { "db": {
 //var app = module.exports.app = express.createServer();
 app = express();
 
-console.log('Server is running...');
+console.log('------------------------');
+console.log('| Server is running... |');
+console.log('------------------------\n');
 
 try {
-  config = JSON.parse(fs.readFileSync(process.cwd()+"/config.json"));
+    config = JSON.parse(fs.readFileSync(path.join(process.cwd()+"/config.json")));
 } catch(e) {
   // ignore
 }
@@ -42,9 +45,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-app.use(express.static(process.cwd() + '/public'));
+app.use(express.static(path.join(process.cwd() + '/public')));
 //app.use(express.logger());
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'jade');
 	
 if (config.accessControl){
