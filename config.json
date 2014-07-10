@@ -1,14 +1,15 @@
 {
 	"db": {
-		"port": 27101,
+		"port": 27017,
 		"host": "localhost",
 		"username": "admin",
-		"password": "4dm1n"
+		"password": "4dm1n",
+        "name":  "mydb",
+        "users":  "users"
 	},
 	"server": {
 		"port": 3000,
-		//"address": "0.0.0.0"
-        "address": "localhost"
+        "address": "0.0.0.0"
 	},
 	"accessControl": {
 		"allowOrigin": "*",

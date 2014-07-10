@@ -8,8 +8,8 @@ body {
 }
 
 #header {
-    height: 126px;
-    background-color: #402817;
+    height: 200px;
+    background-color: #AFC73B;;
 }
 
 #content {
@@ -18,4 +18,23 @@ body {
 
 h1 {
   margin: 0px;
+}
+
+.logo {
+    height: 200px;
+    margin: 0 50px;
+    float: left;
+}
+
+.title {
+    height: 200px;
+    margin: 0 0 0 40px;
+    color: #FFF;
+    font-size: 50px;
+    float: left;
+    line-height: 200px;
+}
+
+.clear {
+    clear: both;
 }

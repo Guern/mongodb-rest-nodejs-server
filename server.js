@@ -1,11 +1,10 @@
 /* 
     server.js
-    mongodb-rest
-
-    Created by Tom de Grunt on 2010-10-03.
-    Copyright (c) 2010 Tom de Grunt.
-		This file is part of mongodb-rest.
-*/ 
+    Civis db server
+    
+    Author(s): Marco Guernieri
+    Concept Reply, 2014-07-09
+*/
 
 var fs = require("fs"),
 		util = require('util'),
@@ -13,17 +12,6 @@ var fs = require("fs"),
         bodyParser = require('body-parser'),
         path = require('path');
 		
-var config = { "db": {
-  'port': 27017,
-  'host': "localhost"
-  },
-  'server': {
-    'port': 3000,
-    'address': "0.0.0.0"
-  },
-  'flavor': "regular",
-  'debug': true
-};
 
 //var app = module.exports.app = express.createServer();
 app = express();
@@ -32,13 +20,32 @@ console.log('------------------------');
 console.log('| Server is running... |');
 console.log('------------------------\n');
 
-try {
-    config = JSON.parse(fs.readFileSync(path.join(process.cwd()+"/config.json")));
-} catch(e) {
-  // ignore
-}
 
-module.exports.config = config;
+// configuration
+config = {
+    "db": {
+        'port': 27017,
+        'host': "localhost"
+    },
+    'server': {
+        'port': 3000,
+        'address': "0.0.0.0"
+    },
+    'flavor': "regular",
+    'debug': true
+};
+
+// reading config.json file
+fs.readFile(path.join(process.cwd() + "/config.json"), 'utf-8', function (err, data) {
+    if (err) {
+        console.log('Error: ' + err);
+    } else {
+        config = JSON.parse(data);
+    }
+
+    module.exports.config = config;
+});
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -55,9 +62,13 @@ if (config.accessControl){
 	app.use(accesscontrol.handle);
 }	
 
+// libs
 require('./lib/main');
 require('./lib/command');
-require('./lib/rest');
+
+// rest APIs
+require('./lib/rest/rest');
+require('./lib/rest/users');
 
 if(!process.argv[2] || !process.argv[2].indexOf("expresso")) {
   app.listen(config.server.port, config.server.address);

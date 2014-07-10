@@ -1,22 +1,12 @@
 {
-  "name": "mongodb-rest",
-  "description": "REST API Server for MongoDB",
-  "version": "0.9.0",
-  "author": "Tom de Grunt <tom@degrunt.nl>",
+  "name": "civis-data-and-users-db",
+  "description": "REST API Server based on MongoDB to manage conspution data and users within Civis Project",
+  "version": "0.1.0",
+  "author": "Marco Guernieri <ma.guernieri@reply.it>",
   "contributors": [
     {
-      "name": "Tom de Grunt",
-      "email": "tom@degrunt.nl"
-    },
-    {
-      "name": "Benjamín Eidelman"
-    },
-    {
-      "name": "Samyak Bhuta"
-    },
-    {
       "name": "Marco Guernieri",
-      "email": "mark.gue@hotmail.it"
+      "email": "ma.guernieri@reply.it"
     }
   ],
   "dependencies": {
@@ -34,7 +24,8 @@
     "rest",
     "restful"
   ],
-  "repository": "git://github.com/tdegrunt/mongodb-rest",
+  "repository": "git://github.com/Guern/mongodb-rest-nodejs-server
+",
   "directories": {
     "lib": "./lib"
   },
